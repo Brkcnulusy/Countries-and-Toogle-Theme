@@ -1,0 +1,179 @@
+main {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 50px;
+    padding: 50px 100px;
+    background-color: var(--Background-Color);
+
+    .filter-wrapper {
+        width: 100%;
+        height: 40px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .search-input {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+
+            form {
+                width: 30%;
+                height: 100%;
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                background-color: var(--Element-Color);
+                border-radius: 5px;
+                padding: 0 10px;
+                -webkit-box-shadow: 0px 1px 5px -4px rgba(0, 0, 0, 0.75);
+                -moz-box-shadow: 0px 1px 5px -4px rgba(0, 0, 0, 0.75);
+                box-shadow: 0px 1px 5px -4px rgba(0, 0, 0, 0.75);
+
+
+                button {
+                    width: 50px;
+                    height: 100%;
+                    outline: none;
+                    border: none;
+                    overflow: hidden;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    background-color: transparent;
+                    cursor: pointer;
+
+                    img {
+                        width: 40px;
+                        height: 40px;
+                        inset: 0;
+                    }
+                }
+
+                input {
+                    width: 100%;
+                    height: 100%;
+                    border: none;
+                    outline: none;
+                    display: flex;
+                    justify-content: flex-start;
+                    align-items: center;
+                    background-color: transparent;
+                    color: var(--Text-Color);
+                    font-size: 16px;
+
+                    &::placeholder {
+                        color: var(--Input-Color);
+                        font-size: 12px;
+                    }
+                }
+            }
+        }
+
+        .filter-by-region {
+            width: 200px;
+            height: 100%;
+            background-color: var(--Element-Color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            -webkit-box-shadow: 0px 1px 5px -4px rgba(0, 0, 0, 0.75);
+            -moz-box-shadow: 0px 1px 5px -4px rgba(0, 0, 0, 0.75);
+            box-shadow: 0px 1px 5px -4px rgba(0, 0, 0, 0.75);
+
+            select {
+                width: 100%;
+                height: 100%;
+                border: none;
+                outline: none;
+                padding: 3px 20px;
+                font-size: 14px;
+
+                &:focus {
+                    border: transparent;
+                    outline: none;
+                    box-shadow: none;
+                }
+            }
+        }
+    }
+
+    .countries-wrapper {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+
+        .countries {
+            width: 100%;
+            height: 100%;
+            display: grid;
+            grid-template-columns: repeat(4, 258px);
+            /* 4 sütun */
+            grid-auto-rows: 300px;
+            /* Satır yüksekliği */
+            grid-gap: 50px;
+            /* Satırlar arası boşluk */
+            justify-content: space-between;
+
+            .country {
+                width: 100%;
+                height: 300px;
+                display: flex;
+                flex-direction: column;
+
+                &-flag {
+                    width: 100%;
+                    height: 50%;
+                    background-color: red;
+                }
+
+                &-description {
+                    width: 100%;
+                    height: 50%;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    align-items: flex-start;
+                    padding: 15px 20px;
+
+                    .country-name {
+                        width: 100%;
+
+                    }
+
+                    .country-info {
+                        width: 100%;
+                        display: flex;
+                        flex-direction: column;
+
+                        .population {
+                            width: 100%;
+                            display: flex;
+                            gap: 5px;
+                        }
+
+                        .region {
+                            width: 100%;
+                            display: flex;
+                            gap: 5px;
+                        }
+
+                        .capital {
+                            width: 100%;
+                            display: flex;
+                            gap: 5px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
