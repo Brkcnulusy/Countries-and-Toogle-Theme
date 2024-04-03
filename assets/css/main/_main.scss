@@ -2,174 +2,473 @@ main {
     width: 100%;
     height: 100%;
     display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    gap: 50px;
-    padding: 50px 100px;
     background-color: var(--Background-Color);
+    overflow: hidden;
 
-    .filter-wrapper {
+    .home-page {
         width: 100%;
-        height: 40px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+        height: 100%;
+        display: none;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 50px;
+        padding: 50px 100px;
+        overflow: hidden;
 
-        .search-input {
-            width: 100%;
-            height: 100%;
+        @media (max-width: 560px) {
+              padding: 50px 20px;          
+        }
+
+        &.active {
             display: flex;
-            justify-content: flex-start;
+        }
+
+        .filter-wrapper {
+            width: 100%;
+            height: fit-content;
+            display: flex;
+            justify-content: space-between;
             align-items: center;
 
-            form {
-                width: 30%;
-                height: 100%;
+            @media (max-width: 760px) {
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: flex-start;
+                gap: 40px;
+
+            }
+
+            .search-input {
+                width: 100%;
+                height: 40px;
                 display: flex;
                 justify-content: flex-start;
                 align-items: center;
+
+                form {
+                    width: 30%;
+                    height: 100%;
+                    display: flex;
+                    justify-content: flex-start;
+                    align-items: center;
+                    background-color: var(--Element-Color);
+                    border-radius: 5px;
+                    padding: 0 10px;
+                    -webkit-box-shadow: 0px 1px 5px -4px rgba(0, 0, 0, 0.75);
+                    -moz-box-shadow: 0px 1px 5px -4px rgba(0, 0, 0, 0.75);
+                    box-shadow: 0px 1px 5px -4px rgba(0, 0, 0, 0.75);
+
+                    @media (max-width: 1090px) {
+                        width: 50%;
+                    }
+                    @media (max-width: 760px) {
+                        width: 100%;
+                    }
+                    
+
+                    button {
+                        width: 50px;
+                        height: 100%;
+                        outline: none;
+                        border: none;
+                        overflow: hidden;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        background-color: transparent;
+                        cursor: pointer;
+
+                        img {
+                            width: 40px;
+                            height: 40px;
+                            inset: 0;
+                        }
+                    }
+
+                    input {
+                        width: 100%;
+                        height: 100%;
+                        border: none;
+                        outline: none;
+                        display: flex;
+                        justify-content: flex-start;
+                        align-items: center;
+                        background-color: transparent;
+                        color: var(--Text-Color);
+                        font-size: 16px;
+
+                        &::placeholder {
+                            color: var(--Input-Color);
+                            font-size: 12px;
+                        }
+                    }
+                }
+            }
+
+            .filter-by-region {
+                width: 200px;
+                height: 40px;
                 background-color: var(--Element-Color);
-                border-radius: 5px;
-                padding: 0 10px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
                 -webkit-box-shadow: 0px 1px 5px -4px rgba(0, 0, 0, 0.75);
                 -moz-box-shadow: 0px 1px 5px -4px rgba(0, 0, 0, 0.75);
                 box-shadow: 0px 1px 5px -4px rgba(0, 0, 0, 0.75);
 
-
-                button {
-                    width: 50px;
-                    height: 100%;
-                    outline: none;
-                    border: none;
-                    overflow: hidden;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    background-color: transparent;
-                    cursor: pointer;
-
-                    img {
-                        width: 40px;
-                        height: 40px;
-                        inset: 0;
-                    }
-                }
-
-                input {
+                select {
                     width: 100%;
                     height: 100%;
                     border: none;
                     outline: none;
-                    display: flex;
-                    justify-content: flex-start;
-                    align-items: center;
+                    padding: 3px 20px;
+                    font-size: 14px;
                     background-color: transparent;
                     color: var(--Text-Color);
-                    font-size: 16px;
 
-                    &::placeholder {
-                        color: var(--Input-Color);
-                        font-size: 12px;
+                    option {
+                        background-color: var(--Element-Color);
+                        color: var(--Text-Color);
+                        border: none;
+                    }
+
+                    &:focus {
+                        border: transparent;
+                        outline: none;
+                        box-shadow: none;
                     }
                 }
             }
         }
 
-        .filter-by-region {
-            width: 200px;
+        .countries-wrapper {
+            width: 100%;
             height: 100%;
-            background-color: var(--Element-Color);
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            -webkit-box-shadow: 0px 1px 5px -4px rgba(0, 0, 0, 0.75);
-            -moz-box-shadow: 0px 1px 5px -4px rgba(0, 0, 0, 0.75);
-            box-shadow: 0px 1px 5px -4px rgba(0, 0, 0, 0.75);
+            justify-content: flex-start;
+            align-items: flex-start;
+            overflow: hidden;
 
-            select {
+            .countries {
                 width: 100%;
                 height: 100%;
-                border: none;
-                outline: none;
-                padding: 3px 20px;
-                font-size: 14px;
+                overflow-y: auto;
+                display: grid;
+                grid-template-columns: repeat(4, 258px);
+                /* 4 sütun */
+                grid-auto-rows: 300px;
+                /* Satır yüksekliği */
+                grid-gap: 50px;
+                /* Satırlar arası boşluk */
+                justify-content: space-between;
 
-                &:focus {
-                    border: transparent;
-                    outline: none;
-                    box-shadow: none;
+                @media (max-width: 1400px) {
+                    grid-template-columns: repeat(3, 258px);
+                }
+                @media (max-width: 1090px) {
+                    grid-template-columns: repeat(2, 258px);
+                    justify-content: center;
+                }
+                @media (max-width: 760px) {
+                    grid-template-columns: repeat(1, 258px);
+                    justify-content: center;
+                }
+
+                .country {
+                    width: 100%;
+                    height: 300px;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    background-color: var(--Element-Color);
+                    border-radius: 5px;
+                    cursor: pointer;
+                    -webkit-box-shadow: 0px 1px 5px -4px rgba(0, 0, 0, 0.75);
+                    -moz-box-shadow: 0px 1px 5px -4px rgba(0, 0, 0, 0.75);
+                    box-shadow: 0px 1px 5px -4px rgba(0, 0, 0, 0.75);
+
+                    &-flag {
+                        width: 100%;
+                        height: 50%;
+
+                        img {
+                            width: 100%;
+                            height: 100%;
+                            inset: 0;
+                            object-fit: cover;
+                            object-position: top, left;
+                        }
+                    }
+
+                    &-description {
+                        width: 100%;
+                        height: 50%;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: space-between;
+                        align-items: flex-start;
+                        padding: 15px 20px;
+
+                        h3 {
+                            font-weight: bold;
+                            font-size: 18px;
+                            color: var(--Text-Color);
+                        }
+
+                        h4 {
+                            font-weight: bold;
+                            font-size: 14px;
+                            color: var(--Text-Color);
+                        }
+
+                        span {
+                            font-size: 14px;
+                            color: var(--Text-Color);
+                        }
+
+                        .country-name {
+                            width: 100%;
+
+                        }
+
+                        .country-info {
+                            width: 100%;
+                            display: flex;
+                            flex-direction: column;
+                            gap: 10px;
+
+                            .population {
+                                width: 100%;
+                                display: flex;
+                                gap: 5px;
+                            }
+
+                            .region {
+                                width: 100%;
+                                display: flex;
+                                gap: 5px;
+                            }
+
+                            .capital {
+                                width: 100%;
+                                display: flex;
+                                gap: 5px;
+                            }
+                        }
+                    }
                 }
             }
         }
     }
 
-    .countries-wrapper {
+    .detail-page {
         width: 100%;
         height: 100%;
-        display: flex;
+        display: none;
+        flex-direction: column;
         justify-content: flex-start;
         align-items: flex-start;
+        gap: 70px;
+        padding: 50px 100px;
+        overflow: hidden;
 
-        .countries {
+        @media (max-width: 560px) {
+            padding: 50px 20px;
+        }
+
+        &.active {
+            display: flex;
+        }
+
+        .previous-page {
             width: 100%;
-            height: 100%;
-            display: grid;
-            grid-template-columns: repeat(4, 258px);
-            /* 4 sütun */
-            grid-auto-rows: 300px;
-            /* Satır yüksekliği */
-            grid-gap: 50px;
-            /* Satırlar arası boşluk */
-            justify-content: space-between;
+            height: 60px;
 
-            .country {
-                width: 100%;
-                height: 300px;
+            button {
+                width: fit-content;
+                height: 100%;
+                outline: none;
+                border: none;
                 display: flex;
-                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 5px;
+                padding: 7px 30px 7px 20px;
+                background-color: var(--Element-Color);
+                -webkit-box-shadow: 0px 1px 5px -1px rgba(0, 0, 0, 0.75);
+                -moz-box-shadow: 0px 1px 5px -1px rgba(0, 0, 0, 0.75);
+                box-shadow: 0px 1px 5px -1px rgba(0, 0, 0, 0.75);
 
-                &-flag {
-                    width: 100%;
-                    height: 50%;
-                    background-color: red;
+                img {
+                    width: 25px;
+                    height: 25px;
+                    inset: 0;
                 }
 
-                &-description {
+                span {
+                    font-size: 14px;
+                    color: var(--Text-Color);
+                }
+            }
+        }
+
+        .detail-country {
+            width: 100%;
+            height: fit-content;
+            overflow-y: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 100px;
+
+            @media (max-width: 1490px) {
+                flex-direction: column;
+                gap: 50px;
+            }
+
+
+            .country-flag {
+                width: 50%;
+                height: 480px;
+
+                @media (max-width: 1490px) {
                     width: 100%;
-                    height: 50%;
+                    height: 480px;
+                }
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                    inset: 0;
+                }
+            }
+
+            .country-descriptions {
+                width: 50%;
+                height: 480px;
+                padding: 50px 0;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: flex-start;
+                gap: 50px;
+
+                @media (max-width: 1490px) {
+                    width: 100%;
+                    height: 480px;
+                }
+
+                .country-name {
+                    width: 100%;
+
+                    h2 {
+                        font-size: 26px;
+                        letter-spacing: -1px;
+                        font-weight: bolder;
+                        color: var(--Text-Color);
+                    }
+                }
+
+                .country-infos {
+                    width: 100%;
+                    height: 100%;
                     display: flex;
                     flex-direction: column;
                     justify-content: space-between;
                     align-items: flex-start;
-                    padding: 15px 20px;
 
-                    .country-name {
-                        width: 100%;
-
+                    @media (max-width: 1490px) {
+                        gap: 50px;
                     }
 
-                    .country-info {
+                    .infos {
                         width: 100%;
                         display: flex;
-                        flex-direction: column;
+                        flex-wrap: wrap;
+                        gap: 10px;
 
-                        .population {
-                            width: 100%;
-                            display: flex;
-                            gap: 5px;
+                        @media (max-width: 960px) {
+                            flex-wrap: nowrap;
+                            flex-direction: column;
                         }
 
-                        .region {
-                            width: 100%;
+                        .info {
+                            width: 48%;
                             display: flex;
-                            gap: 5px;
+                            justify-content: flex-start;
+                            align-items: center;
+                            gap: 10px;
+
+                            @media (max-width: 960px) {
+                                width: 100%;
+                            }
+
+                            h4 {
+                                color: var(--Text-Color);
+                                font-size: 14px;
+                                font-weight: bold;
+                            }
+
+                            span {
+                                color: var(--Text-Color);
+                                font-size: 14px;
+                            }
+                        }
+
+                        .sub-region {
+                            width: 100%;
                         }
 
                         .capital {
                             width: 100%;
+                        }
+                    }
+
+                    .border-countries {
+                        width: 100%;
+                        height: 25px;
+                        display: flex;
+                        justify-content: flex-start;
+                        align-items: center;
+                        gap: 15px;
+
+                        @media (max-width: 960px) {
+                            height: fit-content;
+                            flex-direction: column;
+                            justify-content: space-between;
+                            align-items: flex-start;
+                            gap: 20px;
+                        }
+
+                        h4 {
+                            font-weight: bold;
+                            color: var(--Text-Color);
+                        }
+
+                        .countries-wrapper {
+                            height: 100%;
                             display: flex;
-                            gap: 5px;
+                            justify-content: flex-start;
+                            align-items: center;
+                            gap: 10px;
+                            @media (max-width: 960px) {
+                                height: 30px;
+                                flex-wrap: wrap;
+                            }
+
+                            button {
+                                height: 100%;
+                                border: none;
+                                outline: none;
+                                padding: 0 10px;
+                                background-color: var(--Element-Color);
+                                -webkit-box-shadow: 0px 1px 5px -1px rgba(0, 0, 0, 0.75);
+                                -moz-box-shadow: 0px 1px 5px -1px rgba(0, 0, 0, 0.75);
+                                box-shadow: 0px 1px 5px -1px rgba(0, 0, 0, 0.75);
+                                color: var(--Text-Color);
+
+                            }
                         }
                     }
                 }
